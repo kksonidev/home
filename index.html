@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sri Sri Tattva - Redesigned Homepage</title>
+    <title>Sri Sri Tattva - Ancient Ayurveda, Modern Science | Free Shipping</title>
+    <meta name="description" content="Discover clinically-tested Ayurvedic wellness solutions. 4.8★ rated by 12,847+ customers. Free shipping over $75.">
     <style>
         * {
             margin: 0;
@@ -17,8 +18,8 @@
             line-height: 1.6;
         }
         
-        /* Urgent Banner */
-        .urgent-banner {
+        /* Announcement Bar with Rotation */
+        .announcement-bar {
             background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
             color: white;
             text-align: center;
@@ -27,17 +28,28 @@
             font-size: 14px;
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 1001;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
-        .urgent-banner .timer {
+        .announcement-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .timer {
             background: rgba(255,255,255,0.2);
             padding: 4px 12px;
             border-radius: 20px;
-            display: inline-block;
-            margin-left: 10px;
             font-size: 13px;
+            animation: pulse-subtle 2s infinite;
+        }
+        
+        @keyframes pulse-subtle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
         }
         
         /* Header */
@@ -47,7 +59,7 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.08);
             position: sticky;
             top: 46px;
-            z-index: 999;
+            z-index: 1000;
         }
         
         .header-content {
@@ -61,6 +73,27 @@
         .logo {
             font-size: 24px;
             font-weight: bold;
+            color: #2d5016;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .nav-menu a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-menu a:hover {
             color: #2d5016;
         }
         
@@ -93,7 +126,7 @@
         
         .header-actions {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             align-items: center;
         }
         
@@ -118,12 +151,44 @@
             box-shadow: 0 4px 12px rgba(45, 80, 22, 0.3);
         }
         
-        /* Hero Section */
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 24px;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff6b35;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        
+        /* Hero Section - Enhanced */
         .hero {
             background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e9 100%);
-            padding: 60px 5%;
+            padding: 60px 5% 80px;
             position: relative;
             overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(45,80,22,0.05) 0%, transparent 70%);
         }
         
         .hero-content {
@@ -133,6 +198,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
+            position: relative;
         }
         
         .hero-text h1 {
@@ -144,6 +210,18 @@
         
         .hero-text h1 .highlight {
             color: #ff6b35;
+            position: relative;
+        }
+        
+        .hero-text h1 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 107, 53, 0.2);
+            z-index: -1;
         }
         
         .hero-text p {
@@ -156,10 +234,15 @@
             display: flex;
             gap: 30px;
             margin-bottom: 40px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
         
         .stat {
             text-align: center;
+            flex: 1;
         }
         
         .stat-number {
@@ -176,6 +259,7 @@
         .hero-cta {
             display: flex;
             gap: 15px;
+            flex-wrap: wrap;
         }
         
         .btn-large {
@@ -186,6 +270,9 @@
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .btn-secondary {
@@ -199,19 +286,157 @@
             color: white;
         }
         
+        .hero-guarantee {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        
         .hero-image {
             position: relative;
             height: 500px;
-            background: #c8e6c9;
+            background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 100%);
             border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 18px;
             color: #2d5016;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
         
-        /* Problem-Solution Section */
+        /* Live Activity Bar */
+        .live-activity {
+            background: #fff9c4;
+            border-left: 4px solid #ffa000;
+            padding: 12px 20px;
+            margin: 30px 5%;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .live-activity-icon {
+            width: 10px;
+            height: 10px;
+            background: #4caf50;
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        /* As Seen In Section */
+        .as-seen-in {
+            padding: 40px 5%;
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .as-seen-in-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .as-seen-in h3 {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .media-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .media-logo {
+            width: 120px;
+            height: 40px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        /* Categories Section */
+        .categories-section {
+            padding: 80px 5%;
+            background: #fafafa;
+        }
+        
+        .categories-grid {
+            max-width: 1400px;
+            margin: 40px auto 0;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .category-card:hover {
+            border-color: #2d5016;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+        
+        .category-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .category-card h4 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .category-count {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        /* Problem-Solution Section - Enhanced */
         .problem-solution {
             padding: 80px 5%;
             background: white;
@@ -231,6 +456,17 @@
         .section-header p {
             font-size: 18px;
             color: #666;
+        }
+        
+        .section-header .subtitle {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2d5016;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
         }
         
         .problem-grid {
@@ -306,9 +542,155 @@
             border-radius: 8px;
             font-size: 12px;
             text-align: center;
+            transition: all 0.3s;
         }
         
-        /* Bestsellers */
+        .mini-product:hover {
+            background: #e8f5e9;
+        }
+        
+        .view-solutions-btn {
+            width: 100%;
+            margin-top: 15px;
+            padding: 10px;
+            background: transparent;
+            border: 2px solid #2d5016;
+            color: #2d5016;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .view-solutions-btn:hover {
+            background: #2d5016;
+            color: white;
+        }
+        
+        /* How It Works Section */
+        .how-it-works {
+            padding: 80px 5%;
+            background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e9 100%);
+        }
+        
+        .steps-container {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            position: relative;
+        }
+        
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(to right, #2d5016 0%, #2d5016 75%, transparent 100%);
+            z-index: 0;
+        }
+        
+        .step-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #2d5016 0%, #4caf50 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+            box-shadow: 0 4px 12px rgba(45, 80, 22, 0.3);
+        }
+        
+        .step-card h4 {
+            font-size: 18px;
+            color: #2d5016;
+            margin-bottom: 10px;
+        }
+        
+        .step-card p {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* Science Section */
+        .science-section {
+            padding: 80px 5%;
+            background: white;
+        }
+        
+        .science-content {
+            max-width: 1400px;
+            margin: 40px auto 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .science-image {
+            height: 400px;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2d5016;
+            font-size: 16px;
+        }
+        
+        .science-points {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .science-point {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+        
+        .science-point-icon {
+            width: 50px;
+            height: 50px;
+            background: #e8f5e9;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        
+        .science-point-content h4 {
+            font-size: 18px;
+            color: #2d5016;
+            margin-bottom: 5px;
+        }
+        
+        .science-point-content p {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* Bestsellers - Enhanced */
         .bestsellers {
             padding: 80px 5%;
             background: #fafafa;
@@ -346,6 +728,7 @@
             border-radius: 15px;
             font-size: 11px;
             font-weight: 600;
+            z-index: 10;
         }
         
         .product-image {
@@ -358,6 +741,28 @@
             align-items: center;
             justify-content: center;
             color: #999;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quick-view {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100%);
+            background: rgba(45, 80, 22, 0.95);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        
+        .product-card:hover .quick-view {
+            transform: translateX(-50%) translateY(0);
         }
         
         .product-rating {
@@ -379,11 +784,21 @@
             min-height: 40px;
         }
         
+        .product-price-container {
+            margin-bottom: 12px;
+        }
+        
         .product-price {
             font-size: 22px;
             font-weight: bold;
             color: #2d5016;
-            margin-bottom: 15px;
+        }
+        
+        .product-old-price {
+            font-size: 14px;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 8px;
         }
         
         .subscribe-save {
@@ -418,17 +833,234 @@
             color: #d32f2f;
             margin-top: 8px;
             text-align: center;
+            font-weight: 600;
         }
         
-        /* Social Proof */
-        .social-proof {
-            padding: 60px 5%;
-            background: white;
+        /* Bundle Section */
+        .bundle-section {
+            padding: 80px 5%;
+            background: linear-gradient(135deg, #2d5016 0%, #1a3009 100%);
+            color: white;
+        }
+        
+        .bundle-content {
+            max-width: 1200px;
+            margin: 0 auto;
             text-align: center;
         }
         
+        .bundle-content h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+        
+        .bundle-content p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .bundle-card {
+            background: white;
+            color: #333;
+            border-radius: 20px;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .bundle-products {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .bundle-product-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 12px;
+        }
+        
+        .bundle-product-image {
+            width: 60px;
+            height: 60px;
+            background: #e0e0e0;
+            border-radius: 8px;
+        }
+        
+        .bundle-product-info h4 {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .bundle-product-info p {
+            font-size: 12px;
+            color: #666;
+            margin: 0;
+        }
+        
+        .bundle-offer {
+            text-align: center;
+        }
+        
+        .bundle-savings {
+            background: #fff3e0;
+            color: #e65100;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .bundle-price {
+            font-size: 48px;
+            font-weight: bold;
+            color: #2d5016;
+            margin-bottom: 10px;
+        }
+        
+        .bundle-old-price {
+            font-size: 24px;
+            color: #999;
+            text-decoration: line-through;
+        }
+        
+        .bundle-cta {
+            margin-top: 30px;
+        }
+        
+        .bundle-cta button {
+            padding: 18px 48px;
+            font-size: 18px;
+            background: #ff6b35;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .bundle-cta button:hover {
+            background: #f7931e;
+            transform: scale(1.05);
+        }
+        
+        /* Comparison Section */
+        .comparison-section {
+            padding: 80px 5%;
+            background: white;
+        }
+        
+        .comparison-table {
+            max-width: 1000px;
+            margin: 40px auto 0;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            background: #2d5016;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .comparison-header > div {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+        
+        .comparison-row > div {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .comparison-row > div:first-child {
+            justify-content: flex-start;
+            font-weight: 500;
+        }
+        
+        .checkmark {
+            color: #4caf50;
+            font-size: 24px;
+        }
+        
+        .crossmark {
+            color: #f44336;
+            font-size: 24px;
+        }
+        
+        /* Results Section */
+        .results-section {
+            padding: 80px 5%;
+            background: #fafafa;
+        }
+        
+        .results-grid {
+            max-width: 1400px;
+            margin: 40px auto 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .result-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .result-stat {
+            font-size: 48px;
+            font-weight: bold;
+            color: #2d5016;
+            margin-bottom: 10px;
+        }
+        
+        .result-label {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .result-description {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* Social Proof - Enhanced */
+        .social-proof {
+            padding: 80px 5%;
+            background: white;
+        }
+        
         .testimonial-grid {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 40px auto 0;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -440,27 +1072,375 @@
             padding: 30px;
             border-radius: 12px;
             border-left: 4px solid #2d5016;
+            transition: all 0.3s;
+        }
+        
+        .testimonial-card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            background: #c8e6c9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #2d5016;
+        }
+        
+        .testimonial-info {
+            flex: 1;
         }
         
         .testimonial-stars {
             color: #ffa000;
-            font-size: 20px;
-            margin-bottom: 15px;
-        }
-        
-        .testimonial-text {
-            font-size: 15px;
-            color: #555;
-            margin-bottom: 15px;
-            font-style: italic;
+            font-size: 16px;
+            margin-bottom: 3px;
         }
         
         .testimonial-author {
             font-weight: 600;
             color: #2d5016;
+            font-size: 14px;
         }
         
-        /* Float Button */
+        .verified-badge {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2d5016;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 3px;
+        }
+        
+        .testimonial-text {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.7;
+            font-style: italic;
+        }
+        
+        .testimonial-date {
+            font-size: 12px;
+            color: #999;
+            margin-top: 10px;
+        }
+        
+        /* Video Testimonials */
+        .video-testimonials {
+            padding: 80px 5%;
+            background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e9 100%);
+        }
+        
+        .video-grid {
+            max-width: 1400px;
+            margin: 40px auto 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .video-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .play-button {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #2d5016;
+        }
+        
+        .video-info {
+            padding: 20px;
+        }
+        
+        .video-info h4 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .video-info p {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* Certifications */
+        .certifications {
+            padding: 60px 5%;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .cert-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .cert-container h3 {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .cert-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .cert-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .cert-icon {
+            width: 80px;
+            height: 80px;
+            background: #e8f5e9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+        }
+        
+        .cert-name {
+            font-size: 12px;
+            color: #666;
+            font-weight: 600;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 5%;
+            background: #fafafa;
+        }
+        
+        .faq-container {
+            max-width: 900px;
+            margin: 40px auto 0;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .faq-question {
+            padding: 20px 25px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .faq-question:hover {
+            background: #f5f5f5;
+        }
+        
+        .faq-toggle {
+            font-size: 24px;
+            color: #2d5016;
+            transition: transform 0.3s;
+        }
+        
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+        
+        .faq-answer-content {
+            padding: 0 25px 20px;
+            color: #666;
+            line-height: 1.7;
+        }
+        
+        /* Newsletter Section */
+        .newsletter-section {
+            padding: 80px 5%;
+            background: linear-gradient(135deg, #2d5016 0%, #1a3009 100%);
+            color: white;
+        }
+        
+        .newsletter-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .newsletter-content h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+        
+        .newsletter-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .newsletter-benefits {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .newsletter-benefit {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+        }
+        
+        .newsletter-form button {
+            padding: 15px 35px;
+            background: #ff6b35;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        
+        .newsletter-form button:hover {
+            background: #f7931e;
+            transform: scale(1.05);
+        }
+        
+        .newsletter-disclaimer {
+            font-size: 12px;
+            margin-top: 15px;
+            opacity: 0.7;
+        }
+        
+        /* Guarantee Section */
+        .guarantee-section {
+            padding: 80px 5%;
+            background: white;
+        }
+        
+        .guarantee-content {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        
+        .guarantee-card {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .guarantee-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            margin: 0 auto 20px;
+        }
+        
+        .guarantee-card h4 {
+            font-size: 20px;
+            color: #2d5016;
+            margin-bottom: 10px;
+        }
+        
+        .guarantee-card p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Float Buttons */
         .float-consultation {
             position: fixed;
             bottom: 30px;
@@ -474,7 +1454,7 @@
             font-weight: 600;
             z-index: 998;
             transition: all 0.3s;
-            animation: pulse 2s infinite;
+            animation: pulse-float 2s infinite;
         }
         
         .float-consultation:hover {
@@ -482,54 +1462,242 @@
             box-shadow: 0 6px 20px rgba(255, 107, 53, 0.5);
         }
         
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.03);
-            }
+        @keyframes pulse-float {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        
+        /* Exit Intent Popup */
+        .exit-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+        
+        .exit-popup.active {
+            display: flex;
+        }
+        
+        .exit-popup-content {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            max-width: 600px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .exit-popup-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        .exit-popup h3 {
+            font-size: 32px;
+            color: #2d5016;
+            margin-bottom: 15px;
+        }
+        
+        .exit-popup p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .exit-offer {
+            background: #fff3e0;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .exit-offer-code {
+            font-size: 36px;
+            font-weight: bold;
+            color: #ff6b35;
+            margin-bottom: 10px;
+        }
+        
+        .exit-offer-text {
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .exit-popup button {
+            padding: 16px 40px;
+            background: #2d5016;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .exit-popup button:hover {
+            background: #1a3009;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 5% 30px;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            text-align: center;
+            color: #999;
+            font-size: 14px;
         }
         
         /* Mobile Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             .hero-content {
                 grid-template-columns: 1fr;
             }
             
             .problem-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .products-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .testimonial-grid {
-                grid-template-columns: 1fr;
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
             
+            .categories-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .steps-container::before {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
             .hero-text h1 {
                 font-size: 36px;
+            }
+            
+            .section-header h2 {
+                font-size: 32px;
             }
             
             .trust-badges {
                 display: none;
             }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .problem-grid,
+            .products-grid,
+            .testimonial-grid,
+            .video-grid,
+            .results-grid,
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .steps-container,
+            .guarantee-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .science-content,
+            .bundle-card {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-header,
+            .comparison-row {
+                grid-template-columns: 2fr 1fr;
+            }
+            
+            .comparison-header > div:last-child,
+            .comparison-row > div:last-child {
+                display: none;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Urgent Banner -->
-    <div class="urgent-banner">
-        🎉 FREE SHIPPING on orders over $75 + 10% OFF your first order! 
-        <span class="timer">⏰ Ends in: 4h 23m 15s</span>
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <div class="announcement-content">
+            🎉 FREE SHIPPING on orders over $75 + Get 15% OFF your first order! 
+            <span class="timer">⏰ Ends in: 4h 23m 15s</span>
+        </div>
     </div>
 
     <!-- Header -->
     <header>
         <div class="header-content">
-            <div class="logo">🌿 Sri Sri Tattva</div>
+            <div class="logo">
+                🌿 Sri Sri Tattva
+            </div>
+            
+            <nav class="nav-menu">
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#concerns">Health Concerns</a></li>
+                <li><a href="#quiz">Dosha Quiz</a></li>
+                <li><a href="#about">Our Science</a></li>
+            </nav>
             
             <div class="trust-badges">
                 <div class="trust-badge">
@@ -547,7 +1715,11 @@
             </div>
             
             <div class="header-actions">
-                <button class="header-btn btn-primary">Take Free Dosha Quiz</button>
+                <button class="header-btn btn-primary">Free Dosha Quiz</button>
+                <div class="cart-icon">
+                    🛒
+                    <span class="cart-count">0</span>
+                </div>
             </div>
         </div>
     </header>
@@ -575,8 +1747,13 @@
                 </div>
                 
                 <div class="hero-cta">
-                    <button class="btn-large btn-primary">Start Your Wellness Journey</button>
-                    <button class="btn-large btn-secondary">Take Free Quiz</button>
+                    <button class="btn-large btn-primary">🎯 Find Your Perfect Match</button>
+                    <button class="btn-large btn-secondary">📋 Take Free Quiz</button>
+                </div>
+                
+                <div class="hero-guarantee">
+                    <span style="font-size: 20px;">✓</span>
+                    <span><strong>60-Day Money-Back Guarantee</strong> • Free Shipping Over $75</span>
                 </div>
             </div>
             
@@ -587,9 +1764,71 @@
         </div>
     </section>
 
-    <!-- Problem-Solution Section -->
-    <section class="problem-solution">
+    <!-- Live Activity Bar -->
+    <div class="live-activity">
+        <span class="live-activity-icon"></span>
+        <strong>Jennifer from California</strong> just purchased NAOQ19 - Immunity Support • 2 minutes ago
+    </div>
+
+    <!-- As Seen In Section -->
+    <section class="as-seen-in">
+        <div class="as-seen-in-content">
+            <h3>As Featured In</h3>
+            <div class="media-logos">
+                <div class="media-logo">Forbes</div>
+                <div class="media-logo">Health</div>
+                <div class="media-logo">Vogue</div>
+                <div class="media-logo">NYT</div>
+                <div class="media-logo">WebMD</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop by Category -->
+    <section class="categories-section">
         <div class="section-header">
+            <div class="subtitle">🏆 SHOP BY CATEGORY</div>
+            <h2>What Are You Looking For?</h2>
+            <p>Browse our most popular wellness categories</p>
+        </div>
+        
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="category-icon">😴</div>
+                <h4>Sleep Support</h4>
+                <p class="category-count">12 products</p>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-icon">🧠</div>
+                <h4>Brain Health</h4>
+                <p class="category-count">18 products</p>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-icon">💪</div>
+                <h4>Energy & Vitality</h4>
+                <p class="category-count">15 products</p>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-icon">🦠</div>
+                <h4>Immunity</h4>
+                <p class="category-count">24 products</p>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-icon">❤️</div>
+                <h4>Heart Health</h4>
+                <p class="category-count">10 products</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem-Solution Section -->
+    <section class="problem-solution" id="concerns">
+        <div class="section-header">
+            <div class="subtitle">🎯 PERSONALIZED SOLUTIONS</div>
             <h2>What's Your Wellness Goal?</h2>
             <p>Choose your concern and discover your personalized solution</p>
         </div>
@@ -604,6 +1843,7 @@
                     <div class="mini-product">Deep-SLP<br>$14.99</div>
                     <div class="mini-product">Ashwagandha<br>$19.99</div>
                 </div>
+                <button class="view-solutions-btn">View Solutions →</button>
             </div>
             
             <div class="problem-card">
@@ -614,6 +1854,7 @@
                     <div class="mini-product">Ashwagandha<br>$19.99</div>
                     <div class="mini-product">Brahmi<br>$19.99</div>
                 </div>
+                <button class="view-solutions-btn">View Solutions →</button>
             </div>
             
             <div class="problem-card">
@@ -624,13 +1865,83 @@
                     <div class="mini-product">NAOQ19<br>$24.99</div>
                     <div class="mini-product">Chyawanprash<br>$26.99</div>
                 </div>
+                <button class="view-solutions-btn">View Solutions →</button>
+            </div>
+            
+            <div class="problem-card">
+                <div class="problem-icon">🧠</div>
+                <h3>Brain Fog?</h3>
+                <p>Enhance mental clarity, focus, and memory with proven nootropic herbs.</p>
+                <div class="solution-products">
+                    <div class="mini-product">Brahmi<br>$19.99</div>
+                    <div class="mini-product">Shankhapushpi<br>$18.99</div>
+                </div>
+                <button class="view-solutions-btn">View Solutions →</button>
+            </div>
+            
+            <div class="problem-card">
+                <div class="problem-icon">💪</div>
+                <h3>Low Energy?</h3>
+                <p>Boost natural energy and stamina without caffeine crashes.</p>
+                <div class="solution-products">
+                    <div class="mini-product">Shilajit<br>$29.99</div>
+                    <div class="mini-product">Chyawanprash<br>$26.99</div>
+                </div>
+                <button class="view-solutions-btn">View Solutions →</button>
+            </div>
+            
+            <div class="problem-card">
+                <div class="problem-icon">🦴</div>
+                <h3>Joint Pain?</h3>
+                <p>Natural relief for joint discomfort and improved mobility.</p>
+                <div class="solution-products">
+                    <div class="mini-product">Joint Support<br>$22.99</div>
+                    <div class="mini-product">Turmeric+<br>$21.99</div>
+                </div>
+                <button class="view-solutions-btn">View Solutions →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="quiz">
+        <div class="section-header">
+            <div class="subtitle">⚡ SIMPLE PROCESS</div>
+            <h2>How Sri Sri Tattva Works</h2>
+            <p>Your personalized wellness journey in 4 easy steps</p>
+        </div>
+        
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h4>Take Free Quiz</h4>
+                <p>Answer 8 quick questions about your health goals and lifestyle</p>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h4>Get Recommendations</h4>
+                <p>Receive personalized product matches based on your Dosha type</p>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h4>Start Your Routine</h4>
+                <p>Begin with clinically-tested formulas delivered to your door</p>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h4>See Results</h4>
+                <p>Feel the difference in 2-4 weeks with consistent use</p>
             </div>
         </div>
     </section>
 
     <!-- Bestsellers -->
-    <section class="bestsellers">
+    <section class="bestsellers" id="shop">
         <div class="section-header">
+            <div class="subtitle">⭐ TOP RATED</div>
             <h2>Our Bestsellers</h2>
             <p>Join thousands who trust these proven formulas</p>
         </div>
@@ -638,55 +1949,377 @@
         <div class="products-grid">
             <div class="product-card">
                 <div class="product-badge">BESTSELLER</div>
-                <div class="product-image">NAOQ19 Image</div>
+                <div class="product-image">
+                    NAOQ19 Image
+                    <div class="quick-view">👁 Quick View</div>
+                </div>
                 <div class="product-rating">
                     <span class="stars">★★★★★</span>
-                    <span>(2,847 reviews)</span>
+                    <span>(2,847)</span>
                 </div>
                 <h4>NAOQ19 - Immunity Support</h4>
                 <div class="subscribe-save">💰 Save 15% with Subscribe & Save</div>
-                <div class="product-price">$24.99</div>
-                <button>Add to My Routine</button>
+                <div class="product-price-container">
+                    <span class="product-price">$24.99</span>
+                    <span class="product-old-price">$29.99</span>
+                </div>
+                <button>Add to Cart</button>
                 <div class="urgency-text">🔥 127 people viewing now</div>
             </div>
             
             <div class="product-card">
-                <div class="product-image">Chyawanprash Image</div>
+                <div class="product-image">
+                    Chyawanprash Image
+                    <div class="quick-view">👁 Quick View</div>
+                </div>
                 <div class="product-rating">
                     <span class="stars">★★★★★</span>
-                    <span>(1,523 reviews)</span>
+                    <span>(1,523)</span>
                 </div>
                 <h4>Premium Chyawanprash</h4>
                 <div class="subscribe-save">💰 Save 15% with Subscribe & Save</div>
-                <div class="product-price">$26.99</div>
-                <button>Add to My Routine</button>
+                <div class="product-price-container">
+                    <span class="product-price">$26.99</span>
+                </div>
+                <button>Add to Cart</button>
                 <div class="urgency-text">⚡ Only 8 left in stock</div>
             </div>
             
             <div class="product-card">
                 <div class="product-badge">NEW</div>
-                <div class="product-image">Deep-SLP Image</div>
+                <div class="product-image">
+                    Deep-SLP Image
+                    <div class="quick-view">👁 Quick View</div>
+                </div>
                 <div class="product-rating">
                     <span class="stars">★★★★★</span>
-                    <span>(892 reviews)</span>
+                    <span>(892)</span>
                 </div>
                 <h4>Deep-SLP Sleep Support</h4>
                 <div class="subscribe-save">💰 Save 15% with Subscribe & Save</div>
-                <div class="product-price">$14.99</div>
-                <button>Add to My Routine</button>
+                <div class="product-price-container">
+                    <span class="product-price">$14.99</span>
+                    <span class="product-old-price">$19.99</span>
+                </div>
+                <button>Add to Cart</button>
             </div>
             
             <div class="product-card">
-                <div class="product-image">Sudanta Image</div>
+                <div class="product-image">
+                    Sudanta Image
+                    <div class="quick-view">👁 Quick View</div>
+                </div>
                 <div class="product-rating">
                     <span class="stars">★★★★★</span>
-                    <span>(3,241 reviews)</span>
+                    <span>(3,241)</span>
                 </div>
                 <h4>Sudanta Toothpaste</h4>
                 <div class="subscribe-save">💰 Save 15% with Subscribe & Save</div>
-                <div class="product-price">$7.99</div>
-                <button>Add to My Routine</button>
+                <div class="product-price-container">
+                    <span class="product-price">$7.99</span>
+                </div>
+                <button>Add to Cart</button>
                 <div class="urgency-text">✅ Dentist Recommended</div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-badge">TRENDING</div>
+                <div class="product-image">
+                    Ashwagandha Image
+                    <div class="quick-view">👁 Quick View</div>
+                </div>
+                <div class="product-rating">
+                    <span class="stars">★★★★★</span>
+                    <span>(1,982)</span>
+                </div>
+                <h4>Organic Ashwagandha</h4>
+                <div class="subscribe-save">💰 Save 15% with Subscribe & Save</div>
+                <div class="product-price-container">
+                    <span class="product-price">$19.99</span>
+                </div>
+                <button>Add to Cart</button>
+                <div class="urgency-text">🔥 198 sold in last 24 hours</div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">
+                    Brahmi Image
+                    <div class="quick-view">👁 Quick View</div>
+                </div>
+                <div class="product-rating">
+                    <span class="stars">★★★★★</span>
+                    <span>(1,456)</span>
+                </div>
+                <h4>Brahmi Brain Support</h4>
+                <div class="subscribe-save">💰 Save 15% with Subscribe & Save</div>
+                <div class="product-price-container">
+                    <span class="product-price">$19.99</span>
+                </div>
+                <button>Add to Cart</button>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">
+                    Turmeric Image
+                    <div class="quick-view">👁 Quick View</div>
+                </div>
+                <div class="product-rating">
+                    <span class="stars">★★★★★</span>
+                    <span>(2,134)</span>
+                </div>
+                <h4>Turmeric+ Joint Support</h4>
+                <div class="subscribe-save">💰 Save 15% with Subscribe & Save</div>
+                <div class="product-price-container">
+                    <span class="product-price">$21.99</span>
+                </div>
+                <button>Add to Cart</button>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-badge">EXCLUSIVE</div>
+                <div class="product-image">
+                    Shilajit Image
+                    <div class="quick-view">👁 Quick View</div>
+                </div>
+                <div class="product-rating">
+                    <span class="stars">★★★★★</span>
+                    <span>(876)</span>
+                </div>
+                <h4>Premium Shilajit Resin</h4>
+                <div class="subscribe-save">💰 Save 15% with Subscribe & Save</div>
+                <div class="product-price-container">
+                    <span class="product-price">$29.99</span>
+                    <span class="product-old-price">$39.99</span>
+                </div>
+                <button>Add to Cart</button>
+                <div class="urgency-text">⚡ Limited Stock</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bundle Section -->
+    <section class="bundle-section">
+        <div class="bundle-content">
+            <h2>🎁 Wellness Bundle</h2>
+            <p>Get our most popular products together and save big</p>
+            
+            <div class="bundle-card">
+                <div class="bundle-products">
+                    <div class="bundle-product-item">
+                        <div class="bundle-product-image"></div>
+                        <div class="bundle-product-info">
+                            <h4>NAOQ19 - Immunity Support</h4>
+                            <p>Boost your immune system</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bundle-product-item">
+                        <div class="bundle-product-image"></div>
+                        <div class="bundle-product-info">
+                            <h4>Ashwagandha - Stress Relief</h4>
+                            <p>Manage stress naturally</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bundle-product-item">
+                        <div class="bundle-product-image"></div>
+                        <div class="bundle-product-info">
+                            <h4>Deep-SLP - Sleep Support</h4>
+                            <p>Better sleep quality</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bundle-offer">
+                    <div class="bundle-savings">
+                        Save $25 Today!
+                    </div>
+                    <div class="bundle-price">
+                        $54.99
+                        <span class="bundle-old-price">$79.99</span>
+                    </div>
+                    <p style="color: #666; font-size: 14px; margin: 15px 0;">
+                        ✓ Free Shipping<br>
+                        ✓ 60-Day Money-Back Guarantee<br>
+                        ✓ Save 31% vs. buying separately
+                    </p>
+                    <div class="bundle-cta">
+                        <button>🛒 Add Bundle to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Science Section -->
+    <section class="science-section" id="about">
+        <div class="section-header">
+            <div class="subtitle">🔬 BACKED BY SCIENCE</div>
+            <h2>Ancient Wisdom Meets Modern Research</h2>
+            <p>Every formula is clinically tested and scientifically validated</p>
+        </div>
+        
+        <div class="science-content">
+            <div class="science-image">
+                [Lab/Science Image Here]<br>
+                Quality Testing Process
+            </div>
+            
+            <div class="science-points">
+                <div class="science-point">
+                    <div class="science-point-icon">🧪</div>
+                    <div class="science-point-content">
+                        <h4>Third-Party Tested</h4>
+                        <p>Every batch is tested for purity, potency, and safety by independent labs. We publish our certificates of analysis.</p>
+                    </div>
+                </div>
+                
+                <div class="science-point">
+                    <div class="science-point-icon">🌿</div>
+                    <div class="science-point-content">
+                        <h4>100% Natural Ingredients</h4>
+                        <p>No artificial colors, flavors, or preservatives. Just pure, potent herbs sourced from sustainable farms.</p>
+                    </div>
+                </div>
+                
+                <div class="science-point">
+                    <div class="science-point-icon">📊</div>
+                    <div class="science-point-content">
+                        <h4>Clinically Validated</h4>
+                        <p>Our key ingredients are backed by clinical studies showing real, measurable health benefits.</p>
+                    </div>
+                </div>
+                
+                <div class="science-point">
+                    <div class="science-point-icon">✨</div>
+                    <div class="science-point-content">
+                        <h4>GMP Certified</h4>
+                        <p>Manufactured in FDA-registered, GMP-certified facilities following strict quality protocols.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison-section">
+        <div class="section-header">
+            <div class="subtitle">⚖️ WHY CHOOSE US</div>
+            <h2>Sri Sri Tattva vs. Others</h2>
+            <p>See why thousands choose our authentic Ayurvedic formulas</p>
+        </div>
+        
+        <div class="comparison-table">
+            <div class="comparison-header">
+                <div>Features</div>
+                <div>Sri Sri Tattva</div>
+                <div>Others</div>
+            </div>
+            
+            <div class="comparison-row">
+                <div>Third-Party Lab Tested</div>
+                <div><span class="checkmark">✓</span></div>
+                <div><span class="crossmark">✗</span></div>
+            </div>
+            
+            <div class="comparison-row">
+                <div>100% Natural Ingredients</div>
+                <div><span class="checkmark">✓</span></div>
+                <div><span class="crossmark">✗</span></div>
+            </div>
+            
+            <div class="comparison-row">
+                <div>Traditional Ayurvedic Formulas</div>
+                <div><span class="checkmark">✓</span></div>
+                <div><span class="crossmark">✗</span></div>
+            </div>
+            
+            <div class="comparison-row">
+                <div>GMP Certified Manufacturing</div>
+                <div><span class="checkmark">✓</span></div>
+                <div><span class="checkmark">✓</span></div>
+            </div>
+            
+            <div class="comparison-row">
+                <div>60-Day Money-Back Guarantee</div>
+                <div><span class="checkmark">✓</span></div>
+                <div><span class="crossmark">✗</span></div>
+            </div>
+            
+            <div class="comparison-row">
+                <div>Free Ayurvedic Consultation</div>
+                <div><span class="checkmark">✓</span></div>
+                <div><span class="crossmark">✗</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section">
+        <div class="section-header">
+            <div class="subtitle">📈 PROVEN RESULTS</div>
+            <h2>Real Results From Real People</h2>
+            <p>Join thousands who've transformed their health with our products</p>
+        </div>
+        
+        <div class="results-grid">
+            <div class="result-card">
+                <div class="result-stat">87%</div>
+                <div class="result-label">Better Sleep Quality</div>
+                <p class="result-description">Users report falling asleep faster and waking up more refreshed after 4 weeks</p>
+            </div>
+            
+            <div class="result-card">
+                <div class="result-stat">92%</div>
+                <div class="result-label">Reduced Stress</div>
+                <p class="result-description">Customers experience lower stress levels and improved mood within 2 weeks</p>
+            </div>
+            
+            <div class="result-card">
+                <div class="result-stat">78%</div>
+                <div class="result-label">Stronger Immunity</div>
+                <p class="result-description">Users report fewer sick days and better overall health after 6 weeks</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Testimonials -->
+    <section class="video-testimonials">
+        <div class="section-header">
+            <div class="subtitle">🎥 CUSTOMER STORIES</div>
+            <h2>Watch Real Transformations</h2>
+            <p>See how our products have changed lives</p>
+        </div>
+        
+        <div class="video-grid">
+            <div class="video-card">
+                <div class="video-thumbnail">
+                    <div class="play-button">▶</div>
+                </div>
+                <div class="video-info">
+                    <h4>"My Sleep Completely Transformed"</h4>
+                    <p>Sarah shares her 30-day Deep-SLP journey</p>
+                </div>
+            </div>
+            
+            <div class="video-card">
+                <div class="video-thumbnail">
+                    <div class="play-button">▶</div>
+                </div>
+                <div class="video-info">
+                    <h4>"No More Afternoon Crashes"</h4>
+                    <p>Mike's experience with Ashwagandha</p>
+                </div>
+            </div>
+            
+            <div class="video-card">
+                <div class="video-thumbnail">
+                    <div class="play-button">▶</div>
+                </div>
+                <div class="video-info">
+                    <h4>"Haven't Been Sick in 6 Months"</h4>
+                    <p>Jennifer's NAOQ19 immunity story</p>
+                </div>
             </div>
         </div>
     </section>
@@ -694,35 +2327,427 @@
     <!-- Social Proof -->
     <section class="social-proof">
         <div class="section-header">
-            <h2>Real People, Real Results</h2>
-            <p>Join 12,847+ customers who've transformed their health</p>
+            <div class="subtitle">⭐ 4.8/5 RATING</div>
+            <h2>12,847+ Happy Customers</h2>
+            <p>Join our growing community of wellness enthusiasts</p>
         </div>
         
         <div class="testimonial-grid">
             <div class="testimonial-card">
-                <div class="testimonial-stars">★★★★★</div>
-                <div class="testimonial-text">"My immunity has never been stronger! Haven't caught a cold in 6 months since starting NAOQ19."</div>
-                <div class="testimonial-author">— Sarah M. (Verified Buyer)</div>
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">SM</div>
+                    <div class="testimonial-info">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <div class="testimonial-author">Sarah M.</div>
+                        <span class="verified-badge">✓ Verified Purchase</span>
+                    </div>
+                </div>
+                <div class="testimonial-text">"My immunity has never been stronger! Haven't caught a cold in 6 months since starting NAOQ19. The best part? It's all natural and no side effects."</div>
+                <div class="testimonial-date">Purchased: NAOQ19 • 3 months ago</div>
             </div>
             
             <div class="testimonial-card">
-                <div class="testimonial-stars">★★★★★</div>
-                <div class="testimonial-text">"Finally sleeping through the night! Deep-SLP changed my life without making me groggy."</div>
-                <div class="testimonial-author">— Michael T. (Verified Buyer)</div>
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">MT</div>
+                    <div class="testimonial-info">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <div class="testimonial-author">Michael T.</div>
+                        <span class="verified-badge">✓ Verified Purchase</span>
+                    </div>
+                </div>
+                <div class="testimonial-text">"Finally sleeping through the night! Deep-SLP changed my life without making me groggy. I wake up refreshed and energized every morning now."</div>
+                <div class="testimonial-date">Purchased: Deep-SLP • 2 months ago</div>
             </div>
             
             <div class="testimonial-card">
-                <div class="testimonial-stars">★★★★★</div>
-                <div class="testimonial-text">"My dentist noticed the difference! Sudanta keeps my mouth healthy naturally."</div>
-                <div class="testimonial-author">— Amira W. (Verified Buyer)</div>
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">AW</div>
+                    <div class="testimonial-info">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <div class="testimonial-author">Amira W.</div>
+                        <span class="verified-badge">✓ Verified Purchase</span>
+                    </div>
+                </div>
+                <div class="testimonial-text">"My dentist noticed the difference! Sudanta keeps my mouth healthy naturally. No more sensitivity and my teeth feel cleaner than ever."</div>
+                <div class="testimonial-date">Purchased: Sudanta • 4 months ago</div>
             </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">DK</div>
+                    <div class="testimonial-info">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <div class="testimonial-author">David K.</div>
+                        <span class="verified-badge">✓ Verified Purchase</span>
+                    </div>
+                </div>
+                <div class="testimonial-text">"Ashwagandha has been a game changer for my stress levels. I feel more calm and focused at work, and my anxiety is much more manageable."</div>
+                <div class="testimonial-date">Purchased: Ashwagandha • 1 month ago</div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">LP</div>
+                    <div class="testimonial-info">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <div class="testimonial-author">Lisa P.</div>
+                        <span class="verified-badge">✓ Verified Purchase</span>
+                    </div>
+                </div>
+                <div class="testimonial-text">"The bundle deal was perfect! I got everything I needed for my wellness routine and saved money. Quality products that actually work."</div>
+                <div class="testimonial-date">Purchased: Wellness Bundle • 2 weeks ago</div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">RJ</div>
+                    <div class="testimonial-info">
+                        <div class="testimonial-stars">★★★★★</div>
+                        <div class="testimonial-author">Raj J.</div>
+                        <span class="verified-badge">✓ Verified Purchase</span>
+                    </div>
+                </div>
+                <div class="testimonial-text">"Brahmi has improved my focus and mental clarity significantly. I can concentrate better during long work hours and my memory feels sharper."</div>
+                <div class="testimonial-date">Purchased: Brahmi • 5 weeks ago</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section class="certifications">
+        <div class="cert-container">
+            <h3>Trusted Certifications & Standards</h3>
+            <div class="cert-grid">
+                <div class="cert-badge">
+                    <div class="cert-icon">✓</div>
+                    <div class="cert-name">GMP Certified</div>
+                </div>
+                <div class="cert-badge">
+                    <div class="cert-icon">🌿</div>
+                    <div class="cert-name">100% Natural</div>
+                </div>
+                <div class="cert-badge">
+                    <div class="cert-icon">🔬</div>
+                    <div class="cert-name">Lab Tested</div>
+                </div>
+                <div class="cert-badge">
+                    <div class="cert-icon">🇮🇳</div>
+                    <div class="cert-name">Ayush Certified</div>
+                </div>
+                <div class="cert-badge">
+                    <div class="cert-icon">♻️</div>
+                    <div class="cert-name">Eco-Friendly</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="section-header">
+            <div class="subtitle">❓ QUESTIONS</div>
+            <h2>Frequently Asked Questions</h2>
+            <p>Everything you need to know about Sri Sri Tattva products</p>
+        </div>
+        
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    Are Sri Sri Tattva products safe to take daily?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Yes! All our products are made from 100% natural herbs and are safe for daily use. They're manufactured in GMP-certified facilities and undergo rigorous third-party testing. However, we always recommend consulting with your healthcare provider before starting any new supplement regimen, especially if you're pregnant, nursing, or taking medications.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    How long until I see results?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Most customers notice improvements within 2-4 weeks of consistent use. Ayurvedic herbs work holistically with your body, so results build gradually. For best results, we recommend taking products consistently for at least 8 weeks. Some benefits like improved energy may be felt sooner, while deeper changes in immunity or stress management develop over time.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    What's your return policy?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        We offer a 60-day money-back guarantee. If you're not completely satisfied with your purchase, simply contact us within 60 days for a full refund. We stand behind the quality of our products and want you to feel confident in your purchase.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Do you offer free shipping?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Yes! We offer free shipping on all orders over $75. Orders typically arrive within 3-5 business days. We also offer express shipping options at checkout if you need your products sooner.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Are your products vegan and gluten-free?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Most of our products are vegan and gluten-free. Specific information can be found on each product page. If you have specific dietary restrictions, feel free to reach out to our customer service team for personalized recommendations.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Can I take multiple products together?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Yes! Our products are designed to work synergistically. Many customers combine products for comprehensive wellness support. Our free Dosha quiz can help identify the best product combinations for your unique needs, or you can chat with one of our Ayurvedic consultants for personalized guidance.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee Section -->
+    <section class="guarantee-section">
+        <div class="section-header">
+            <div class="subtitle">💯 RISK-FREE</div>
+            <h2>Our Promise to You</h2>
+            <p>Shop with complete confidence</p>
+        </div>
+        
+        <div class="guarantee-content">
+            <div class="guarantee-card">
+                <div class="guarantee-icon">↩️</div>
+                <h4>60-Day Money-Back</h4>
+                <p>Not satisfied? Get a full refund within 60 days, no questions asked. We stand behind every product we sell.</p>
+            </div>
+            
+            <div class="guarantee-card">
+                <div class="guarantee-icon">🚚</div>
+                <h4>Free Shipping Over $75</h4>
+                <p>Enjoy free shipping on all orders over $75. Fast delivery within 3-5 business days.</p>
+            </div>
+            
+            <div class="guarantee-card">
+                <div class="guarantee-icon">💬</div>
+                <h4>Free Expert Consultation</h4>
+                <p>Get personalized advice from our certified Ayurvedic practitioners. Book your free 15-minute session today.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="newsletter-content">
+            <h2>Join Our Wellness Community</h2>
+            <p>Get 15% off your first order + exclusive tips and early access to new products</p>
+            
+            <div class="newsletter-benefits">
+                <div class="newsletter-benefit">
+                    <span>✓</span>
+                    <span>15% Welcome Discount</span>
+                </div>
+                <div class="newsletter-benefit">
+                    <span>✓</span>
+                    <span>Wellness Tips & Recipes</span>
+                </div>
+                <div class="newsletter-benefit">
+                    <span>✓</span>
+                    <span>Early Product Access</span>
+                </div>
+            </div>
+            
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">Get 15% OFF</button>
+            </form>
+            
+            <p class="newsletter-disclaimer">
+                By subscribing, you agree to receive marketing emails. Unsubscribe anytime.
+            </p>
         </div>
     </section>
 
     <!-- Float Consultation Button -->
     <div class="float-consultation">
-        💬 Free Ayurvedic Consultation
+        💬 Free Consultation
     </div>
 
+    <!-- Exit Intent Popup -->
+    <div class="exit-popup">
+        <div class="exit-popup-content">
+            <div class="exit-popup-close">×</div>
+            <h3>Wait! Don't Leave Empty-Handed</h3>
+            <p>Take 15% off your first order with code:</p>
+            
+            <div class="exit-offer">
+                <div class="exit-offer-code">WELCOME15</div>
+                <div class="exit-offer-text">Valid for the next 30 minutes only!</div>
+            </div>
+            
+            <button onclick="document.querySelector('.exit-popup').classList.remove('active')">
+                Claim My Discount
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>🌿 Sri Sri Tattva</h4>
+                <p style="color: #ccc; margin-top: 15px; line-height: 1.8;">
+                    Bringing 5000+ years of Ayurvedic wisdom to your doorstep. Clinically tested, naturally effective.
+                </p>
+                <div style="margin-top: 20px;">
+                    <p style="color: #ccc; font-size: 14px;">📧 support@srisritattva.com</p>
+                    <p style="color: #ccc; font-size: 14px;">📞 1-800-TATTVA</p>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="#">Bestsellers</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Immunity Support</a></li>
+                    <li><a href="#">Sleep & Stress</a></li>
+                    <li><a href="#">Brain Health</a></li>
+                    <li><a href="#">Bundles</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Learn</h4>
+                <ul>
+                    <li><a href="#">What is Ayurveda?</a></li>
+                    <li><a href="#">Dosha Quiz</a></li>
+                    <li><a href="#">Success Stories</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Clinical Studies</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Quality Promise</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2026 Sri Sri Tattva. All rights reserved. | <a href="#" style="color: #999;">Privacy Policy</a> | <a href="#" style="color: #999;">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const wasActive = faqItem.classList.contains('active');
+                
+                // Close all FAQs
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked FAQ if it wasn't active
+                if (!wasActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+        
+        // Exit Intent Popup (simplified - triggers on mouse leaving viewport at top)
+        let exitShown = false;
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY < 10 && !exitShown) {
+                document.querySelector('.exit-popup').classList.add('active');
+                exitShown = true;
+            }
+        });
+        
+        // Close popup when clicking outside
+        document.querySelector('.exit-popup').addEventListener('click', (e) => {
+            if (e.target.classList.contains('exit-popup')) {
+                document.querySelector('.exit-popup').classList.remove('active');
+            }
+        });
+        
+        // Countdown Timer
+        function updateTimer() {
+            const timer = document.querySelector('.timer');
+            const parts = timer.textContent.match(/(\d+)h (\d+)m (\d+)s/);
+            if (parts) {
+                let hours = parseInt(parts[1]);
+                let minutes = parseInt(parts[2]);
+                let seconds = parseInt(parts[3]);
+                
+                seconds--;
+                if (seconds < 0) {
+                    seconds = 59;
+                    minutes--;
+                    if (minutes < 0) {
+                        minutes = 59;
+                        hours--;
+                        if (hours < 0) {
+                            hours = 23;
+                        }
+                    }
+                }
+                
+                timer.textContent = `⏰ Ends in: ${hours}h ${minutes}m ${seconds}s`;
+            }
+        }
+        
+        setInterval(updateTimer, 1000);
+        
+        // Live Activity Rotation
+        const activities = [
+            { name: 'Jennifer', location: 'California', product: 'NAOQ19 - Immunity Support', time: '2 minutes ago' },
+            { name: 'Michael', location: 'Texas', product: 'Deep-SLP Sleep Support', time: '5 minutes ago' },
+            { name: 'Sarah', location: 'New York', product: 'Ashwagandha', time: '8 minutes ago' },
+            { name: 'David', location: 'Florida', product: 'Wellness Bundle', time: '12 minutes ago' }
+        ];
+        
+        let activityIndex = 0;
+        function rotateActivity() {
+            const activity = activities[activityIndex];
+            const activityBar = document.querySelector('.live-activity');
+            activityBar.innerHTML = `
+                <span class="live-activity-icon"></span>
+                <strong>${activity.name} from ${activity.location}</strong> just purchased ${activity.product} • ${activity.time}
+            `;
+            activityIndex = (activityIndex + 1) % activities.length;
+        }
+        
+        setInterval(rotateActivity, 5000);
+    </script>
 </body>
 </html>
